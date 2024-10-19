@@ -12,7 +12,7 @@ NODE_NAME="$1"
 mkdir -p "vm/$NODE_NAME/config"
 
 # Copy docker-compose
-cp docker-compose.yml start.sh stop.sh sync.sh "vm/$NODE_NAME/"
+cp docker-compose.yml script/*.sh "vm/$NODE_NAME/"
 
 # Daftar subdirektori
 SUBDIRS=(boot cdrom dev etc home lost+found media mnt opt proc root run srv sys tmp usr var)
