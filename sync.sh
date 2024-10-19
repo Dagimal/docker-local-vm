@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Daftar direktori yang ingin dicopy
+directories=("bin" "boot" "dev" "etc" "home" "lib" "lib32" "lib64" "libx32" "media" "mnt" "opt" "proc" "root" "run" "sbin" "srv" "sys" "tmp" "usr" "var")
+
+# Hitung total direktori
+total=${#directories[@]}
+
+# Loop melalui setiap direktori dan salin dari container ke direktori lokal
+for ((i=0; i<total; i++)); do
+    dir=${directories[i]}
+    echo "Copying $dir..."
+    docker cp local-node1:/"$dir" data/
+    
+    # Hitung progress
+    progress=$((i + 1))
+    percent=$((progress * 100 / total))
+    
+    # Tampilkan progress bar
+    printf "\rProgress: [%-50s] %d%%" "$(printf '#%.0s' $(seq 1 $((percent / 2))))" "$percent"
+done
+
+# New line after completion
+echo -e "\nDone!"

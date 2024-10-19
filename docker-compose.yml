@@ -1,0 +1,24 @@
+version: '3.8'  # Menentukan versi Docker Compose
+
+services:
+  openssh-server:
+    image: vm-siluman
+    container_name: local-node1
+    hostname: dagimal01
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Jakarta
+    volumes:
+      - ./data/root:/root
+    ports:
+      - 2221:22
+    restart: unless-stopped
+    networks:
+      dagimal_net: 
+        ipv4_address: 192.168.100.2
+
+networks:
+  dagimal_net:
+    external: true
+

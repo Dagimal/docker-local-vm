@@ -20,8 +20,10 @@ services:
       - USER_NAME=dagimal #optional
       - LOG_STDOUT= #optional
     volumes:
-      - ./data:/etc
-      - ./data:/opt
+      - usr:/usr
+      - home:/home
+      - etc:/etc
+      - opt:/opt
     ports:
       - 2221:22
     restart: unless-stopped
@@ -35,3 +37,14 @@ networks:
     ipam:
       config:
         - subnet: 192.168.100.0/24  # Pastikan subnet tidak bertabrakan
+
+volumes:
+  usr:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data/usr
+  home:
+  etc:
+  opt:
