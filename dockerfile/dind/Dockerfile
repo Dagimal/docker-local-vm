@@ -1,5 +1,5 @@
 # Menggunakan image dasar Ubuntu
-FROM ubuntu:latest
+FROM cruizba/ubuntu-dind
 
 # Memperbarui daftar paket dan menginstal OpenSSH server
 RUN apt-get update && \
